@@ -10,7 +10,6 @@ In TL-Verilog, the most common data types are booleans (as you used in the previ
 
 ``` 
 $vect[7:0] = ....;
-
 ```
 
 Bit ranges are generally not required on the right-hand side of an expression. When they are used, they extract a subrange of bits from a vector signal.
