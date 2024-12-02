@@ -54,28 +54,28 @@
    
    // **Lab: Instruction Types Decode
    $is_i_instr = $instr[6:5] == 2'b00;
-   ($is_r_instr = $instr[6:5] == 2'b01) || ($is_r_instr = $instr[6:5] == 2'b10);
+   $is_r_instr = ($instr[6:5] == 2'b01) || ( $instr[6:5] == 2'b10);
    $is_b_instr = $instr[6:5] == 2'b11;
    
    
    // **Lab: Instruction Immediate Decode
    $imm[31:0]  = $is_i_instr ? { {21{$instr[31]}}, $instr[30:20] } :   // I-type
-                 $is_i_instr ? { {21($instr[31]}}, {3$instr[7]}, {5$instr[30:25]}, {4$instr[11:8], 0 } :  // B-type
+                 $is_i_instr ? { {19($instr[31]}}, {2$instr[7]}, {6$instr[30:25]}, {3$instr[11:8], 0 } :  // B-type
                  32'b0;   // Default (unused)
    
    
    // **Lab: Instruction Field Decode
    $rs2[4:0]    = $instr[24:20];
-   $rs1[4:0]    = TBD;
-   $funct3[2:0] = TBD;
-   $rd[4:0]     = TBD;
-   $opcode[6:0] = TBD;
+   $rs1[4:0]    = $instr[19:15];
+   $funct3[2:0] = $instr[14:12];
+   $rd[4:0]     = $instr[11:7];
+   $opcode[6:0] = $instr[6:0];
    
    
    // **Lab: Register Validity Decode
    $rs1_valid = $is_r_instr || $is_i_instr || $is_b_instr;
-   $rs2_valid = TBD;
-   $rd_valid  = TBD;
+   $rs2_valid = $is_r_instr || $is_b_instr;
+   $rd_valid  = $is_r_instr || $is_i_instr;
    
    
    // Register File Read Hookup
@@ -90,14 +90,14 @@
    // **Lab: Instruction Decode
    $dec_bits[9:0] = {$funct3, $opcode};
    $is_blt  = $dec_bits == 10'b1001100011;
-   $is_addi = TBD;
-   $is_add  = TBD;
+   $is_addi = $dec_bits == 10'b0000010011;
+   $is_add  = $dec_bits == 10'b0000110011;
    
    
    // **Lab: ALU
    $result[31:0] = $is_addi ? $src1_value + $imm :    // ADDI: src1 + imm
-                   //TBD   // ADD: src1 + src2
-                              32'b0;   // Default (unused)
+                   $is_add ? $src1_value + $src2_value :  // ADD: src1 + src2
+                   32'b0;   // Default (unused)
    
    
    // Register File Write Hookup
@@ -107,11 +107,11 @@
    
    
    // **Lab: Branch Condition
-   $taken_branch = TBD;
+   $taken_branch = $is_blt ? ($src1_value < $src2_value);
    
    
    // **Lab: Branch Target
-   $br_target_pc[31:0] = TBD;
+   $br_target_pc[31:0] = $pc + $imm;
    // Note: $taken_branch and $br_target_pc control the PC mux.
    
    
