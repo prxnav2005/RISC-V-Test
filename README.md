@@ -5,7 +5,7 @@ Head over to [MakerchipIDE](https://makerchip.com/sandbox/#) and you will be abl
 Towards your right will be the "DIAGRAM", "VIZ", "WAVEFORM". You can adjust the screen to your preference by splitting it the way you want to using the icon present on
 the top right corner of the panel. 
 
-Ideally it's nice to have the screen in this format. ![screen]](screen.png) 
+Ideally it's nice to have the screen in this format. ![screen](screen.png) 
 
 Simply head into the Basic-CPU-Core folder and copy paste the source code into the "EDITOR" window. Now you can either go the same icon present on the top right corner of the panel or press "Ctrl + Enter" to compile and simulate your source code. The "DIAGRAM", "VIZ", "WAVEFORM" gets updated and the functionality of the CPU is clearly seen in the "VIZ" tab (Visualization).
 
