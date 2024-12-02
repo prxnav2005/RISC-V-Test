@@ -9,7 +9,7 @@ the top right corner of the panel.
 >Ideally it's nice to have the screen in this format. ![screen](screen.png) 
 
 
-Simply head into the Basic-CPU-Core folder and copy paste the source code into the "EDITOR" window. Now you can either go the same icon present on the top right corner of the panel or press "Ctrl + Enter" to compile and simulate your source code. The "DIAGRAM", "VIZ", "WAVEFORM" gets updated and the functionality of the CPU is clearly seen in the "VIZ" tab (Visualization).
+Simply head into the Basic-CPU-Core folder and copy paste the source code into the "EDITOR" window. Now you can either go the same icon present on the top right corner of the panel or press "Ctrl + Enter" to compile and simulate your source code. The "DIAGRAM", "VIZ", "WAVEFORM" gets updated. Head over to the "VIZ" (Visualization) tab and click on the play button to view the functionality of the CPU core. 
 
 ## Block-Diagram
 
