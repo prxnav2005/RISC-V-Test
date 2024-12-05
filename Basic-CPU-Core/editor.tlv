@@ -60,7 +60,7 @@
    
    // **Lab: Instruction Immediate Decode
    $imm[31:0]  = $is_i_instr ? { {21{$instr[31]}}, $instr[30:20] } :   // I-type
-                 $is_b_instr ? { {19{$instr[31]}}, $instr[7], $instr[30:25], $instr[11:8], 1'b0 } :  // B-type
+                 $is_b_instr ? { {20{$instr[31]}}, $instr[7], $instr[30:25], $instr[11:8], 1'b0 } :  // B-type
                  32'b0;   // Default (unused)
    
    
